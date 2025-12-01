@@ -52,6 +52,7 @@ for book_dir in "$CONTENT_DIR"/*; do
     --metadata=title:"${book_title:-$book_name}" \
     --metadata=author:"${book_author:-}" \
     --metadata=lang:"${book_lang:-pt-BR}" \
+    --resource-path=".:$book_dir:static" \
     --pdf-engine=xelatex \
     -V mainfont="TeX Gyre Pagella" \
     -V sansfont="TeX Gyre Heros" \
@@ -67,6 +68,7 @@ for book_dir in "$CONTENT_DIR"/*; do
     --metadata=title:"${book_title:-$book_name}" \
     --metadata=author:"${book_author:-}" \
     --metadata=lang:"${book_lang:-pt-BR}" \
+    --resource-path=".:$book_dir:static" \
     -o "$OUTPUT_DIR/$book_name.epub"
 
   generated_at="$(date -Is)"

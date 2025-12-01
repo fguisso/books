@@ -21,6 +21,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v4
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -44,7 +48,11 @@ jobs:
         run: OUTPUT_DIR=static/downloads ./scripts/pandoc-build.sh
 
       - name: Build site
-        run: hugo --minify
+        env:
+          HUGO_BASEURL: ${{ steps.pages.outputs.base_url }}
+        run: |
+          BASE_URL="${HUGO_BASEURL%/}/"
+          hugo --minify --baseURL "${BASE_URL}"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

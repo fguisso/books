@@ -17,7 +17,7 @@ Site estático para múltiplos livros em pastas separadas, usando Hugo com o tem
 - `.github/workflows/gh-pages.yml`: build + deploy no GitHub Pages.
 
 ## Configuração inicial
-1) Ajuste `baseURL`, `repoURL` e links de edição em `config/_default/hugo.toml` e `config/_default/params.toml`.
+1) Ajuste `repoURL` e links de edição em `config/_default/params.toml` (o `baseURL` é passado automaticamente pelo workflow do GitHub Pages; altere só se for testar builds manuais com outro domínio).
 2) Inicie os módulos do Hugo para trazer o tema:
 ```bash
 hugo mod get
@@ -47,8 +47,9 @@ O workflow `gh-pages.yml`:
 2. Instala Hugo Extended.
 3. Instala Pandoc + LaTeX.
 4. Resolve módulos do Hugo (trazendo o tema Hextra).
-5. Gera o site (`public/`).
-6. Converte livros para PDF e EPUB (`public/downloads/`).
-7. Publica em GitHub Pages.
+5. Configura o Pages e calcula o `base_url` correto (incluindo subpath do repositório).
+6. Gera o site (`public/`) usando `--baseURL` vindo do Pages (funciona em `<user>.github.io/<repo>` e em `<user>.github.io`).
+7. Converte livros para PDF e EPUB (`public/downloads/`).
+8. Publica em GitHub Pages.
 
 Habilite GitHub Pages em `Settings > Pages` apontando para o artefato do workflow.

@@ -39,5 +39,5 @@ description = "Coleção de livros estáticos construída com Hugo, Hextra e con
   secondaryCtaUrl = "/downloads/"
 
 # Links para downloads (ajuste se usar outras portas/hosts em dev)
-downloadsBaseURL = "/downloads"
+# Em produção, deixamos vazio para que o Hugo use .Site.BaseURL + /downloads.
 downloadsDevBaseURL = "http://localhost:1314"
