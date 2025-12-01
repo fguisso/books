@@ -1,39 +1,43 @@
-[params]
-  description = "Coleção de livros estáticos construída com Hugo, Hextra e conversão para PDF/EPUB."
+description = "Coleção de livros estáticos construída com Hugo, Hextra e conversão para PDF/EPUB."
 
-  [params.brand]
-    title = "Livros"
-    url = "/"
+[brand]
+  title = "Livros"
+  url = "/"
 
-  [params.navbar]
-    displayTitle = true
+[navbar]
+  displayTitle = false
+  [navbar.logo]
+    path = "images/glivros.svg"
+    dark = "images/glivros.svg"
+    width = "120"
+    height = "47"
 
-  [params.editURL]
-    base = "https://github.com/<seu-usuario>/books/edit/main"
+[editURL]
+  base = "https://github.com/<seu-usuario>/books/edit/main"
 
-  [params.footer]
-    enable = true
-    displayCopyright = false
-    [params.footer.links]
-      github = "https://github.com/<seu-usuario>/books"
+[footer]
+  enable = true
+  displayCopyright = false
+  [footer.links]
+    github = "https://github.com/<seu-usuario>/books"
 
-  [params.search]
-    enable = true
-    type = "flexsearch"
+[search]
+  enable = true
+  type = "flexsearch"
 
-  [params.docs]
-    repoURL = "https://github.com/<seu-usuario>/books"
-    repoBranch = "main"
+[docs]
+  repoURL = "https://github.com/<seu-usuario>/books"
+  repoBranch = "main"
 
-  [params.hero]
-    enable = true
-    title = "Biblioteca Digital"
-    subtitle = "Vários livros, um pipeline: Hugo + Hextra + Pandoc para HTML, PDF e EPUB."
-    ctaText = "Ver livros"
-    ctaUrl = "/books/"
-    secondaryCtaText = "Downloads"
-    secondaryCtaUrl = "/downloads/"
+[hero]
+  enable = true
+  title = "Biblioteca Digital"
+  subtitle = "Vários livros, um pipeline: Hugo + Hextra + Pandoc para HTML, PDF e EPUB."
+  ctaText = "Ver livros"
+  ctaUrl = "/books/"
+  secondaryCtaText = "Downloads"
+  secondaryCtaUrl = "/downloads/"
 
-  # Links para downloads (ajuste se usar outras portas/hosts em dev)
-  downloadsBaseURL = "/downloads"
-  downloadsDevBaseURL = "http://localhost:1314"
+# Links para downloads (ajuste se usar outras portas/hosts em dev)
+downloadsBaseURL = "/downloads"
+downloadsDevBaseURL = "http://localhost:1314"

@@ -1,0 +1,32 @@
+{{- $logoPath := .Site.Params.navbar.logo.path | default "images/logo.svg" -}}
+{{- $logoDarkPath := .Site.Params.navbar.logo.dark | default $logoPath -}}
+{{- $logoLink := .Site.Params.navbar.logo.link | default .Site.Home.RelPermalink -}}
+{{- $logoWidth := .Site.Params.navbar.logo.width | default "20" -}}
+{{- $logoHeight := .Site.Params.navbar.logo.height | default "20" -}}
+{{- $displayTitle := (.Site.Params.navbar.displayTitle | default true) -}}
+
+{{- $logo := resources.Get $logoPath -}}
+{{- $logoDark := resources.Get $logoDarkPath -}}
+
+<a class="hx:flex hx:items-center hx:hover:opacity-75 hx:ltr:mr-auto hx:rtl:ml-auto" href="{{ $logoLink }}">
+  {{- if (.Site.Params.navbar.displayLogo | default true) }}
+    {{- if and $logo (eq $logo.MediaType.SubType "svg") }}
+      <div class="hx:mr-2 hx:block hx:dark:hidden">
+        {{ $logo.Content | safeHTML }}
+      </div>
+      <div class="hx:mr-2 hx:hidden hx:dark:block">
+        {{- if and $logoDark (eq $logoDark.MediaType.SubType "svg") -}}
+          {{ $logoDark.Content | safeHTML }}
+        {{- else -}}
+          <img class="hx:block" src="{{ $logoDarkPath | relURL }}" alt="{{ cond $displayTitle `Logo` .Site.Title }}" height="{{ $logoHeight }}" width="{{ $logoWidth }}" />
+        {{- end -}}
+      </div>
+    {{- else -}}
+      <img class="hx:mr-2 hx:block hx:dark:hidden" src="{{ $logoPath | relURL }}" alt="{{ cond $displayTitle `Logo` .Site.Title }}" height="{{ $logoHeight }}" width="{{ $logoWidth }}" />
+      <img class="hx:mr-2 hx:hidden hx:dark:block" src="{{ $logoDarkPath | relURL }}" alt="{{ cond $displayTitle `Dark Logo` .Site.Title }}" height="{{ $logoHeight }}" width="{{ $logoWidth }}" />
+    {{- end }}
+  {{- end }}
+  {{- if $displayTitle }}
+    <span class="hx:mr-2 hx:font-extrabold hx:inline hx:select-none" title="{{ .Site.Title }}">{{- .Site.Title -}}</span>
+  {{- end }}
+</a>
