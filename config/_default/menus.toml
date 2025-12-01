@@ -1,0 +1,14 @@
+[[main]]
+name = "Livros"
+pageRef = "/books"
+weight = 1
+
+[[main]]
+name = "Downloads"
+url = "/downloads/"
+weight = 2
+
+[[main]]
+name = "Sobre"
+pageRef = "/sobre"
+weight = 3

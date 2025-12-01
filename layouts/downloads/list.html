@@ -1,0 +1,85 @@
+{{ define "main" }}
+<section class="hx:max-w-5xl hx:mx-auto hx:px-4 hx:py-10">
+  <header class="hx:mb-8">
+    <p class="hx:text-xs hx:font-semibold hx:tracking-wide hx:uppercase hx:text-gray-500">Downloads</p>
+    <h1 class="hx:text-3xl hx:font-bold hx:leading-tight hx:mb-2">{{ .Title }}</h1>
+    {{ with .Params.description }}<p class="hx:text-base hx:text-gray-600">{{ . }}</p>{{ end }}
+  </header>
+
+  {{/* Escolhe base de downloads: dev usa porta 1314, prod usa baseURL+/downloads */}}
+  {{ $downloadsDev := or .Site.Params.downloadsDevBaseURL "http://localhost:1314" }}
+  {{ $downloadsProd := or .Site.Params.downloadsBaseURL (print .Site.BaseURL "downloads") }}
+  {{ $downloadsBase := cond hugo.IsServer $downloadsDev $downloadsProd }}
+
+  {{/* coleciona seções de livros (top-level) exceto as páginas utilitárias */}}
+  {{ $exclude := slice "downloads" "sobre" "books" }}
+  {{ $books := slice }}
+  {{ range .Site.Sections }}
+    {{ $slug := replace (path.Base .RelPermalink) "/" "" }}
+    {{ if in $exclude $slug }}{{ continue }}{{ end }}
+    {{ $books = $books | append . }}
+  {{ end }}
+
+  {{/* mapa de metadados dos downloads gerados pelo script */}}
+  {{ $downloadsData := dict }}
+  {{ with site.Data.downloads }}
+    {{ $s := newScratch }}
+    {{ range . }}
+      {{ if and .slug .generated_at }}
+        {{ $s.SetInMap "map" .slug . }}
+      {{ end }}
+    {{ end }}
+    {{ $downloadsData = $s.Get "map" }}
+  {{ end }}
+
+  {{ if gt (len $books) 0 }}
+    <div class="hx:space-y-4">
+      {{ range $books }}
+        {{ $slug := .Section | default (replace (path.Base .RelPermalink) "/" "") }}
+        {{ $pdf := printf "%s/%s.pdf" $downloadsBase $slug }}
+        {{ $epub := printf "%s/%s.epub" $downloadsBase $slug }}
+        {{ $meta := cond (and $downloadsData (index $downloadsData $slug)) (index $downloadsData $slug) nil }}
+        {{ $generated := cond $meta (time $meta.generated_at) nil }}
+        <article class="hx:relative hx:overflow-hidden hx:rounded-2xl hx:border hx:border-gray-200 hx:bg-white hx:shadow-sm hover:hx:shadow-md hx:transition-all hx:duration-200 hx:dark:border-neutral-800 hx:dark:bg-dark">
+          <div class="hx:absolute hx:inset-x-0 hx:top-0 hx:h-1 hx:bg-gradient-to-r hx:from-primary-500 hx:to-primary-300"></div>
+          <div class="hx:p-6 hx:flex hx:flex-col hx:gap-4">
+            <div class="hx:flex hx:items-start hx:justify-between hx:gap-4">
+              <div class="hx:space-y-1">
+                <p class="hx:text-xs hx:uppercase hx:tracking-wide hx:text-gray-500">Livro</p>
+                <h2 class="hx:text-xl hx:font-semibold hx:text-gray-900 hx:dark:text-gray-50">{{ .Title }}</h2>
+                {{ with .Params.description }}<p class="hx:text-sm hx:text-gray-600 hx:dark:text-gray-300">{{ . }}</p>{{ end }}
+                {{ with $generated }}
+                  <p class="hx:text-xs hx:text-gray-500">Gerado em {{ time.Format "02/01/2006 15:04" . }}</p>
+                {{ end }}
+              </div>
+              <a href="{{ .RelPermalink }}" class="hx:text-sm hx:font-medium hx:text-primary-600 hover:hx:underline">Ver online</a>
+            </div>
+            <div class="hx:flex hx:flex-wrap hx:items-center hx:gap-4">
+              <a class="hx:inline-flex hx:items-center hx:gap-2.5 hx:px-5 hx:py-3 hx:text-sm hx:font-semibold hx:text-white hx:bg-primary-600 hx:rounded-md hx:shadow-sm hover:hx:bg-primary-700 hx:transition-colors" href="{{ $pdf }}">
+                <svg class="hx:h-4 hx:w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>
+                  <path d="M14 2v6h6"/>
+                  <path d="M10 13h4"/>
+                  <path d="M10 17h4"/>
+                  <path d="M10 9h1"/>
+                </svg>
+                <span>PDF</span>
+              </a>
+              <a class="hx:inline-flex hx:items-center hx:gap-2.5 hx:px-5 hx:py-3 hx:text-sm hx:font-semibold hx:text-primary-700 hx:bg-primary-50 hx:border hx:border-primary-200 hx:rounded-md hx:shadow-sm hover:hx:bg-primary-100 hx:transition-colors" href="{{ $epub }}">
+                <svg class="hx:h-4 hx:w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                  <path d="M9 18h6"/>
+                  <path d="M12 6h0.01"/>
+                </svg>
+                <span>EPUB</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+  {{ else }}
+    <p class="hx:text-gray-700">Nenhum arquivo disponível ainda. Gere os PDFs/EPUBs rodando o pipeline ou o script <code>scripts/pandoc-build.sh</code>.</p>
+  {{ end }}
+</section>
+{{ end }}

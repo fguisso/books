@@ -1,0 +1,20 @@
+languageCode = "pt-br"
+title = "Biblioteca Hugo + Hextra"
+theme = ["github.com/imfing/hextra"]
+enableRobotsTXT = true
+canonifyURLs = true
+defaultContentLanguageInSubdir = false
+enableGitInfo = false
+
+[permalinks]
+  docs = "/:slug/"
+
+[pagination]
+pagerSize = 10
+
+[outputs]
+home = ["HTML", "RSS"]
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
