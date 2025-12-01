@@ -41,9 +41,9 @@ for book_dir in "$CONTENT_DIR"/*; do
   fi
 
   # Metadados básicos
-  book_title="$(grep -m1 '^title:' "$metadata_file" | sed 's/title:[[:space:]]*//; s/^"//; s/"$//')"
-  book_author="$(grep -m1 '^author:' "$metadata_file" | sed 's/author:[[:space:]]*//; s/^"//; s/"$//')"
-  book_lang="$(grep -m1 '^language:' "$metadata_file" | sed 's/language:[[:space:]]*//; s/^"//; s/"$//')"
+  book_title="$(grep -m1 '^title:' "$metadata_file" | sed 's/title:[[:space:]]*//; s/^"//; s/"$//' || true)"
+  book_author="$(grep -m1 '^author:' "$metadata_file" | sed 's/author:[[:space:]]*//; s/^"//; s/"$//' || true)"
+  book_lang="$(grep -m1 '^language:' "$metadata_file" | sed 's/language:[[:space:]]*//; s/^"//; s/"$//' || true)"
 
   echo "Gerando PDF e EPUB para $book_title ($book_name)..."
   pandoc "$metadata_file" "${chapters[@]}" \
