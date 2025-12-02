@@ -1,0 +1,118 @@
+\documentclass[12pt]{article}
+\usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{titling}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{parskip}
+\usepackage{tocloft}
+\usepackage{textcase}
+\usepackage{indentfirst}
+\setkeys{Gin}{width=\linewidth}
+
+\geometry{margin=2.5cm}
+\setstretch{1.3}
+\defaultfontfeatures{Path=$fontsdir$/ , Extension = .ttf}
+\IfFileExists{$fontsdir$/Montserrat-Regular.ttf}{
+  \setmainfont{Montserrat-Regular}[BoldFont=Montserrat-SemiBold, ItalicFont=Montserrat-Light, BoldItalicFont=Montserrat-SemiBold]
+  \setsansfont{Montserrat-Regular}[BoldFont=Montserrat-SemiBold, ItalicFont=Montserrat-Light, BoldItalicFont=Montserrat-SemiBold]
+  \IfFileExists{$fontsdir$/KumbhSans-ExtraBold.ttf}{
+    \newfontface\coverfont[Path=$fontsdir$/]{KumbhSans-ExtraBold.ttf}
+  }{
+    \newfontfamily\coverfont{Montserrat-SemiBold}
+  }
+  \newfontfamily\coversubfont{Montserrat-Light}
+  \setmonofont{Montserrat-Regular}[BoldFont=Montserrat-SemiBold]
+}{
+  \setmainfont{Latin Modern Roman}
+  \setsansfont{Latin Modern Sans}
+  \IfFileExists{$fontsdir$/KumbhSans-ExtraBold.ttf}{
+    \newfontface\coverfont[Path=$fontsdir$/]{KumbhSans-ExtraBold.ttf}
+  }{
+    \newfontfamily\coverfont{Latin Modern Sans}
+  }
+  \newfontfamily\coversubfont{Latin Modern Sans}
+  \setmonofont{Latin Modern Mono}
+}
+
+\definecolor{maintext}{HTML}{000000}
+\definecolor{h1text}{HTML}{111111}
+\definecolor{h2text}{HTML}{2F8C66}
+\definecolor{h3text}{HTML}{2F8C66}
+\definecolor{accent}{HTML}{2F8C66}
+\definecolor{authorgray}{HTML}{777777}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}%
+  \setlength{\parskip}{0pt}%
+}
+
+\color{maintext}
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0pt}
+\raggedbottom
+\widowpenalty=10000
+\clubpenalty=10000
+\pretolerance=1000
+\tolerance=2000
+\emergencystretch=10pt
+
+\titleformat{\section}{\Large\sffamily\bfseries\color{h1text}\MakeTextUppercase}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\large\sffamily\bfseries\color{h2text}\MakeTextUppercase}{\thesubsection}{0.8em}{}
+\titleformat{\subsubsection}{\normalsize\sffamily\bfseries\color{h3text}\MakeTextUppercase}{\thesubsubsection}{0.8em}{}
+
+\renewcommand{\cfttoctitlefont}{\huge\sffamily\bfseries\color{h2text}}
+\renewcommand{\cftsecfont}{\sffamily\color{accent}}
+\renewcommand{\cftsubsecfont}{\sffamily\color{accent}}
+\renewcommand{\cftsecpagefont}{\sffamily\color{accent}}
+\renewcommand{\cftsubsecpagefont}{\sffamily\color{accent}}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=accent,
+  urlcolor=h2text,
+  citecolor=accent
+}
+
+\setlength{\droptitle}{-2em}
+
+\begin{document}
+\begin{titlepage}
+  \begin{center}
+    \vspace*{1.5cm}
+    {\fontsize{42pt}{40pt}\selectfont\addfontfeatures{LetterSpace=2.0}\coverfont\color{h1text}\MakeTextUppercase{$if(cover-title)$$cover-title$$else$$title$$endif$}\par}
+    \vspace{0.5cm}
+    $if(subtitle)$
+      {\Large\coversubfont\color{h2text}\MakeTextUppercase{$subtitle$}\par}
+      \vspace{0.8cm}
+    $endif$
+    \vfill
+    $if(author)$
+      {\normalsize\sffamily\color{authorgray}$for(author)$\MakeTextUppercase{$author$}$sep$ \\ $endfor$\par}
+      \vspace{0.8cm}
+    $endif$
+    $if(date)$
+      {\normalsize\sffamily\color{accent} $date$\par}
+    $endif$
+    \vspace*{1cm}
+  \end{center}
+  \thispagestyle{empty}
+\end{titlepage}
+
+$if(toc)$
+{
+  \hypersetup{linkcolor=accent}
+  \tableofcontents
+  \clearpage
+}
+$endif$
+
+$body$
+
+\end{document}

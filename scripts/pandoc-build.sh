@@ -1,6 +1,26 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+TEMPLATE_DIR="$SCRIPT_DIR/../pandoc/templates"
+STYLE_DIR="$SCRIPT_DIR/../pandoc/styles"
+FONT_DIR="$SCRIPT_DIR/../pandoc/fonts"
+TEMPLATE_TEX="$TEMPLATE_DIR/book.tex"
+TEMPLATE_HTML="$TEMPLATE_DIR/book.html"
+STYLE_CSS="$STYLE_DIR/book.css"
+
+for f in "$TEMPLATE_TEX" "$TEMPLATE_HTML" "$STYLE_CSS"; do
+  if [ ! -f "$f" ]; then
+    echo "Arquivo de template ausente: $f" >&2
+    exit 1
+  fi
+done
+
+if [ ! -d "$FONT_DIR" ]; then
+  echo "Pasta de fontes não encontrada em $FONT_DIR" >&2
+  exit 1
+fi
+
 CONTENT_DIR="${CONTENT_DIR:-content}"
 OUTPUT_DIR="${OUTPUT_DIR:-static/downloads}"
 DATA_DIR="data"
@@ -50,13 +70,15 @@ for book_dir in "$CONTENT_DIR"/*; do
     --toc --toc-depth=2 \
     --metadata-file="$metadata_file" \
     --metadata=title:"${book_title:-$book_name}" \
-    --metadata=author:"${book_author:-}" \
+    --metadata=cover-title:"${book_title:-$book_name}" \
     --metadata=lang:"${book_lang:-pt-BR}" \
+    --template="$TEMPLATE_TEX" \
     --resource-path=".:$book_dir:static" \
     --pdf-engine=xelatex \
-    -V mainfont="TeX Gyre Pagella" \
+    -V mainfont="TeX Gyre Heros" \
     -V sansfont="TeX Gyre Heros" \
-    -V monofont="DejaVu Sans Mono" \
+    -V monofont="Latin Modern Mono" \
+    -V fontsdir="$FONT_DIR" \
     -V fontsize=12pt \
     -V linestretch=1.3 \
     -V geometry=margin=2.5cm \
@@ -68,6 +90,8 @@ for book_dir in "$CONTENT_DIR"/*; do
     --metadata=title:"${book_title:-$book_name}" \
     --metadata=author:"${book_author:-}" \
     --metadata=lang:"${book_lang:-pt-BR}" \
+    --template="$TEMPLATE_HTML" \
+    --css "$STYLE_CSS" \
     --resource-path=".:$book_dir:static" \
     -o "$OUTPUT_DIR/$book_name.epub"
 

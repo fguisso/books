@@ -6,7 +6,7 @@ layout: "docs"
 type: "docs"
 ---
 
-## 6. Construindo hábitos duradouros e planejando o futuro
+## Construindo hábitos duradouros e planejando o futuro
 
 Organizar as finanças não é um evento único, e sim a construção de hábitos duradouros que manterão você fora do vermelho e encaminhado rumo às suas metas futuras. Nesta etapa final da parte individual, vamos consolidar as práticas e olhar adiante:
 

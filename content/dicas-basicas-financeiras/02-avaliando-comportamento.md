@@ -6,7 +6,7 @@ layout: "docs"
 type: "docs"
 ---
 
-## 1. Avaliando seu comportamento e ponto de partida
+## Avaliando seu comportamento e ponto de partida
 
 Antes de qualquer planilha ou cálculo, comece voltando o olhar para si e entendendo sua relação com o dinheiro. Conforme aconselha Nath Finanças, o primeiro passo é entender seu comportamento financeiro – reflita sobre o que tem levado você a gastar além da conta e quais são seus objetivos de vida e financeiros. Faça uma lista no papel: quais metas você gostaria de alcançar (ex.: “quitar minhas dívidas em 1 ano”, “juntar entrada de um carro”, “ter tranquilidade para pagar contas em dia”)? Ter clareza do porquê vai motivar o como.
 

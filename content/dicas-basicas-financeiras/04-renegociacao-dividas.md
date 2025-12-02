@@ -6,7 +6,7 @@ layout: "docs"
 type: "docs"
 ---
 
-## 3. Renegociação e quitação de dívidas
+## Renegociação e quitação de dívidas
 
 Se você já está endividado ou no vermelho, é hora de traçar um plano para sair do buraco. Lembre-se: não existe solução milagrosa instantânea, mas com organização e perseverança é possível sair das dívidas, mesmo que demore meses ou anos. O passo a passo abaixo compila dicas comuns de Nath Finanças, Gustavo Cerbasi e outros especialistas:
 

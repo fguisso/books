@@ -1,7 +1,9 @@
 ---
 title: "Dicas Básicas Financeiras"
+subtitle: "Guia rápido para sair do vermelho"
 description: "Guia prático de organização e educação financeira básica."
-author: "Equipe"
+author:
+  - "O Tesoureiro (Gerador por IA)"
 language: "pt-BR"
 draft: false
 weight: 4

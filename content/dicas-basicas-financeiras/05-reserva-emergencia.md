@@ -6,7 +6,7 @@ layout: "docs"
 type: "docs"
 ---
 
-## 4. Montando sua reserva de emergência
+## Montando sua reserva de emergência
 
 Um dos pontos em que todos os educadores financeiros concordam é a importância de ter uma reserva de emergência. Gustavo Cerbasi ressalta que um fundo de emergência protege você de imprevistos como problemas de saúde, perda de emprego ou despesas inesperadas. Sem essa reserva, qualquer percalço obriga a novos endividamentos ou sacrificações.
 

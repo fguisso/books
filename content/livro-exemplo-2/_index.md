@@ -1,7 +1,9 @@
 ---
 title: "Livro Exemplo 2"
+subtitle: "Demonstração de layout"
 description: "Outro livro para mostrar múltiplas pastas."
-author: "Equipe"
+author:
+  - "Equipe Editorial"
 language: "pt-BR"
 draft: false
 weight: 2

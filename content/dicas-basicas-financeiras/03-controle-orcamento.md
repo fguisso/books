@@ -6,7 +6,7 @@ layout: "docs"
 type: "docs"
 ---
 
-## 2. Controle de gastos e orçamento básico
+## Controle de gastos e orçamento básico
 
 Uma pessoa pode se sentir perdida com tantas contas, mas controlar os gastos é o passo fundamental para sair do vermelho.
 

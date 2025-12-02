@@ -6,7 +6,7 @@ layout: "docs"
 type: "docs"
 ---
 
-## 5. Educação financeira comportamental – entenda sua mente e mude hábitos
+## Educação financeira comportamental – entenda sua mente e mude hábitos
 
 Ter conhecimento técnico (fazer orçamento, calcular juros) resolve metade do problema. A outra metade está no nosso comportamento e psicologia em relação ao dinheiro. Muitos especialistas destacam que educação financeira é 90% comportamento e 10% conhecimento técnico – ou seja, de nada adianta a melhor planilha se você não conseguir controlar impulsos e manter hábitos. Autores premiados como Richard Thaler e Daniel Kahneman revolucionaram a economia ao demonstrar que nós, humanos, não somos 100% racionais nas decisões financeiras; somos influenciados por emoções e vieses cognitivos o tempo todo.
 

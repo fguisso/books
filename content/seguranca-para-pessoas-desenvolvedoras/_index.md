@@ -1,6 +1,9 @@
 ---
 title: "Segurança para Pessoas Desenvolvedoras"
+subtitle: "Princípios e práticas essenciais"
 description: "Livro em construção sobre desenvolvimento seguro, distribuído como conteúdo livre."
+author:
+  - "Fernando Guisso"
 draft: false
 layout: "docs"
 type: "docs"
